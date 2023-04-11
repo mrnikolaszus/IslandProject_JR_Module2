@@ -5,7 +5,7 @@ import Options.GameOptions;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узнать нужны ли методв синк если уже пакет канкарент
-    private volatile static Island island;
+    private  static Island island;
 
     private Island(){};
 
@@ -34,12 +34,15 @@ public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узн
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
+        int count = 1;
          for (int i = 1; i <= GameOptions.getSizeX(); i++) {
             for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                if ( count ==3 ) { result.append("\n");}
 
                 result.append(island.get(i + "*" + j));
+                if ( count > 2 && count%2 ==0 ) { result.append("\n");}
+                count ++;
             }
-            result.append("\n");
         }
          return result.toString();
     }

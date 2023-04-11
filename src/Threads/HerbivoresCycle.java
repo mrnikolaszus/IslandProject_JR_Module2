@@ -1,5 +1,6 @@
 package Threads;
 
+import Animals.Herbivore;
 import Island.*;
 import Options.GameOptions;
 
@@ -12,15 +13,15 @@ public class HerbivoresCycle implements Runnable {
     public HerbivoresCycle(Cell cell) {
         this.cell = cell;
     }
-    int random = ThreadLocalRandom.current().nextInt(1, 50);
+
     @Override
     public void run() {
         try {
-            Thread.sleep(random);
+            Thread.sleep(50);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        cell.testHerb();
+        cell.getHerbivores().forEach(Herbivore::lifeCycle);
         try {
             GameOptions.getCyclicBarrier().await();
         } catch (InterruptedException | BrokenBarrierException e) {

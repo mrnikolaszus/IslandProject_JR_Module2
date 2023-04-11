@@ -1,5 +1,7 @@
 package Threads;
 
+import Animals.Herbivore;
+import Animals.Predator;
 import Island.Cell;
 import Options.GameOptions;
 
@@ -21,7 +23,7 @@ public class PredatorsCycle implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        cell.testPred();
+        cell.getPredators().forEach(Predator::lifeCycle);
         try {
             GameOptions.getCyclicBarrier().await();
         } catch (InterruptedException | BrokenBarrierException e) {

@@ -4,25 +4,30 @@ import Island.*;
 import Options.GameOptions;
 
 public abstract class Animal {
-    Cell cell;
-    int posX;
-    int posY;
-    double weight;
+    private Cell cell;
+    private int posX;
+    private int posY;
 
-    static double MAX_weight;
-    int speed;
-    double hunger;
+    private int speed;
+
+    private double hunger;
+    private double weight;
+
 
     public Animal(int posX, int posY, double weight, int speed) {
         this.posX = posX;
         this.posY = posY;
         this.weight = weight;
         this.speed = speed;
+
     }
 
     public abstract void checkStatus();                 // check XY of animal and XY of Cell;
+    public abstract void reproduce();
+    public abstract void eat();
+    public abstract void death();
+    public abstract void lifeCycle();
     public abstract void move();
-
     public void stepUP(){
         if(posY != GameOptions.getSizeY()){
             this.posY += 1;}
@@ -39,12 +44,6 @@ public abstract class Animal {
         if(posX != GameOptions.getSizeX()){
             this.posX += 1;}
     }
-    public abstract void reproduce();
-    public abstract void eat();
-    public abstract void death();
-    public abstract void lifeCycle();
-
-
     public void setPosX(int posX) {
         this.posX = posX;
     }
@@ -52,4 +51,49 @@ public abstract class Animal {
     public void setPosY(int posY) {
         this.posY = posY;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setHunger(double hunger) {
+        this.hunger = hunger;
+    }
+
+    public double getHunger() {
+        return hunger;
+    }
+
+    public void hungry(double hunger) {   //every morning animal feel hungry
+        this.weight -= hunger;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void raiseWeight(Double food) {
+        this.weight +=food;
+    }
+
+    public abstract double  getMAX_weight();
+
+    public Cell getCell() {
+        return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+    public int getPosY() {
+        return posY;
+    };
 }

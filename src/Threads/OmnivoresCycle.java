@@ -25,7 +25,7 @@ public class OmnivoresCycle implements Runnable {
         try {
             GameOptions.getCyclicBarrier().await();
         } catch (InterruptedException | BrokenBarrierException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }

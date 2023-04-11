@@ -22,7 +22,9 @@ public class Logging implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
         cell.testLog();
+        GameOptions.setIsCycleReady(true);
         try {
             GameOptions.getCyclicBarrier().await();
         } catch (InterruptedException | BrokenBarrierException e) {

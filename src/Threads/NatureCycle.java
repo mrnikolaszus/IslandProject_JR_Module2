@@ -13,19 +13,19 @@ public class NatureCycle implements Runnable {
         this.cell = cell;
     }
 
-    int random = ThreadLocalRandom.current().nextInt(1, 50);
     @Override
     public void run() {
+        GameOptions.setIsCycleReady(false);
         try {
-            Thread.sleep(random);
+            Thread.sleep(50);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         cell.growing();
         try {
             GameOptions.getCyclicBarrier().await();
         } catch (InterruptedException | BrokenBarrierException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
