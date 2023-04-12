@@ -19,6 +19,7 @@ public abstract class Herbivore extends Animal{
     }
     public abstract boolean checkPlants();
     public abstract boolean checkInsects();
+
     public void move(){
 
         Island.getCell(this.getPosX(), this.getPosY()).getHerbivores().remove(this);
@@ -75,12 +76,16 @@ public abstract class Herbivore extends Animal{
 //            System.out.println(this.getWeight() + " после гет хангер");
 //                     System.out.println(" проголадалась на: " + this.getHunger() + " вес: " +this.getWeight());
             this.checkStatus();
+            if(!checkPredator()){
+                System.out.println("herb scared of predator");
+                this.move();
+            }
 //           System.out.println("Проверяем на этой ячейке нет ли хищников:");
 //            System.out.println("Проверяем на этой ячейке есть ли растения :");
-            if (this.checkPredator() && this.checkPlants()) {
+            if (this.checkPlants()) {
                 if(this.getWeight() >= (getMAX_weight()*0.8)){
                     this.reproduce();}
-
+//                System.out.println("herb ready to eat");
                 this.eat();
             } else {
 //                System.out.println("Не нашла еду, бегаем:");

@@ -3,9 +3,7 @@ package Threads;
 import Island.Cell;
 import Options.GameOptions;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 public class OmnivoresCycle implements Runnable {
     private Cell cell;
@@ -23,8 +21,8 @@ public class OmnivoresCycle implements Runnable {
         }
         cell.testOmni();
         try {
-            GameOptions.getCyclicBarrier().await();
-        } catch (InterruptedException | BrokenBarrierException e) {
+            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
             e.printStackTrace();
         }
 

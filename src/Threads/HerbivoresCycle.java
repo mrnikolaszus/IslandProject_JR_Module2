@@ -4,9 +4,7 @@ import Animals.Herbivore;
 import Island.*;
 import Options.GameOptions;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 public class HerbivoresCycle implements Runnable {
     private Cell cell;
@@ -23,9 +21,9 @@ public class HerbivoresCycle implements Runnable {
         }
         cell.getHerbivores().forEach(Herbivore::lifeCycle);
         try {
-            GameOptions.getCyclicBarrier().await();
-        } catch (InterruptedException | BrokenBarrierException e) {
-            throw new RuntimeException(e);
+            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+            e.printStackTrace();
         }
 
     }

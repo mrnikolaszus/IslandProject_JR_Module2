@@ -20,6 +20,7 @@ public enum PredatorsTypes { //TODO animal info?
     PredatorsTypes(HashMap<String, Double> hm) {
         this.info = hm;
     }
+
     public static void init(){
         SNAKE.getInfo().put("Wolf", 0D);
         SNAKE.getInfo().put("Snake", 0D);

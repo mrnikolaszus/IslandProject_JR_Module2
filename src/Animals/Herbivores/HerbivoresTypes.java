@@ -1,6 +1,6 @@
 package Animals.Herbivores;
 
-public enum HerbivoresTypes {   //TODO animal info?
+public enum HerbivoresTypes {
     MOUSE,
     DUCK,
     RABBIT,

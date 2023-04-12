@@ -57,13 +57,25 @@ public class GameMethods {
                         service.execute(new PredatorsCycle(value));
 
                     });
-
             Island.getIsland().forEach(
                     (key, value)
                             -> {
                         service.execute(new Logging(value));
 
                     });
+
+
+
+
+            do {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+//                System.out.println("still logging");
+            } while (GameOptions.isIsCycleReady());         //TODO awefull join method???
+
             weekCounter++;
 
             if (weekCounter > 7) {
@@ -75,14 +87,6 @@ public class GameMethods {
                     GameMethods.oneMonthLog();
                 }
             }
-            do {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-//                System.out.println("still logging");
-            } while (GameOptions.isIsCycleReady());         //TODO awefull join method???
         }
         service.shutdown();   //TODO Разбораться как не вырубать и не создавать заново Пул
 
@@ -110,6 +114,12 @@ public class GameMethods {
         System.out.println("One Month Report:");
         Cell.totalMouseCount();
         Cell.totalSnakesCount();
+        Cell.totalSheepCount();
+        Cell.totalDuckCount();
+        Cell.totalEagleCount();
+        Cell.totalRabbitCount();
+        Cell.totalGoatCount();
+        Cell.totalDeerCount();
     }
 
 }

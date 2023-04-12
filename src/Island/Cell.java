@@ -1,9 +1,11 @@
 package Island;
 
+import Animals.AnimalMethods;
 import Animals.Herbivore;
-import Animals.Herbivores.Mouse;
+import Animals.Herbivores.*;
 import Animals.Omnivore;
 import Animals.Predator;
+import Animals.Predators.Eagle;
 import Animals.Predators.Snake;
 import Options.GameOptions;
 
@@ -29,9 +31,9 @@ public class Cell {
 
     private int insectsCount;
 
-    private static final int MAX_insectsCount = 1000;
+    private static final int MAX_insectsCount = 2000;
     private double plants;
-    private static final double MAX_plants = 300;
+    private static final double MAX_plants = 600;
 
 
     public Cell(int posX, int posY) {
@@ -41,60 +43,105 @@ public class Cell {
         this.name = +posX + "*" + posY;
         this.posX = posX;
         this.posY = posY;
-        this.plants = 300;  // лучше с нуля начинать
-        this.insectsCount = 1000; // лучше с нуля начинать
+        this.plants = 600;  // лучше с нуля начинать
+        this.insectsCount = 2000; // лучше с нуля начинать
 
     }
 
 
     @Override
     public String toString() {
-        return String.format("|%-8s %-30s|", "\uD83D\uDDFA️" + name,
+        return String.format("|%-8s %-50s|", "\uD83D\uDDFA️" + name,
                 "\uD83D\uDC1B:" + insectsCount +
                         " \uD83C\uDF3F:" + plants +
                         " \uD83D\uDC00:" + this.mouseCount().size() +
-                        " \uD83D\uDC0D:" + this.snakeCount().size());
+                        " \uD83D\uDC0D:" + this.snakeCount().size() +
+                        " \uD83D\uDC11:" + this.sheepCount().size() +
+                        " \uD83E\uDD86:" + this.duckCount().size() +
+                        " \uD83E\uDD85:" + this.eagleCount().size() +
+                        " \uD83D\uDC07:" + this.rabbitCount().size() +
+                        " \uD83D\uDC10:" + this.goatCount().size() +
+                        " \uD83E\uDD8C:" + this.goatCount().size()
+
+        );
 
     }
 
     public void growing() {
 
         if (this.plants > 50 && this.plants < 100 && this.insectsCount < MAX_insectsCount) {
-            this.insectsCount += 1;
+            this.insectsCount += 2;
         } else if (this.plants > 100 && this.plants < 150 && this.insectsCount < MAX_insectsCount) {
-            this.insectsCount += 3;
-        } else if (this.plants > 150 && this.insectsCount < MAX_insectsCount) {
             this.insectsCount += 6;
+        } else if (this.plants > 150 && this.insectsCount < MAX_insectsCount) {
+            this.insectsCount += 12;
         } else if (this.plants < 50 && this.insectsCount > 1) {
             this.insectsCount -= 1;
         }
 
+        if(this.insectsCount > MAX_insectsCount){
+            this.insectsCount = MAX_insectsCount;
+        }
+
         if (this.plants < MAX_plants) {
-            this.plants += 1;
-        }
-        if (this.plants > (MAX_plants * 0.9) && this.insectsCount > (MAX_insectsCount * 0.9)) {
-            int random = ThreadLocalRandom.current().nextInt(1, 10001);
-            if (random > 9900) {
-//                System.out.println("NEW LIFE!");
-                this.newMouse();
-            }
-        }
-        if (this.mouseCount().size() > 10) {
-            int random = ThreadLocalRandom.current().nextInt(1, 10001);
-            if (random > 9900) {
-//                System.out.println("NEW LIFE!");
-                this.newSnake();
+            this.plants += 3;
+            if(this.plants > MAX_plants){
+                this.plants = MAX_plants;
             }
         }
 
-    }
+        int random = ThreadLocalRandom.current().nextInt(1, 10001);
 
-    public void newMouse() {
-        this.herbivores.add(new Mouse(this.posX, this.posY, 0.2, 1));
-    }
+        if (random > 9000) {
+            if (this.plants > (MAX_plants * 0.5) && this.insectsCount > (MAX_insectsCount * 0.5) && random > 9900) {
 
-    public void newSnake() {
-        this.predators.add(new Snake(this.posX, this.posY, 5, 3));
+//                System.out.println("NEW LIFE!");
+                AnimalMethods.newMysteriousMouse(this);
+
+        }
+         if (this.plants > (MAX_plants * 0.8) && this.insectsCount > (MAX_insectsCount * 0.8) && random > 9960) {
+
+
+//                System.out.println("NEW LIFE!");
+             AnimalMethods.newMysteriousSheep(this);
+
+        }
+            if (this.plants > (MAX_plants * 0.6) && this.insectsCount > (MAX_insectsCount * 0.6) && random > 9990) {
+
+
+//                System.out.println("NEW LIFE!");
+                AnimalMethods.newMysteriousGoat(this);
+
+            }
+            if (this.plants > (MAX_plants * 0.8)  && random > 9960) {
+
+
+//                System.out.println("NEW LIFE!");
+                AnimalMethods.newMysteriousRabbit(this);
+
+            }
+
+             if (this.plants > (MAX_plants * 0.75) && this.insectsCount > (MAX_insectsCount * 0.75) && random > 9930) {
+
+
+//                System.out.println("NEW LIFE!");
+                 AnimalMethods.newMysteriousDuck(this);
+
+            }
+        if ((this.mouseCount().size() > 5 ||  this.duckCount().size() > 5 || this.rabbitCount().size() > 5 ) && random > 9900) {
+
+//                System.out.println("NEW LIFE!");
+            AnimalMethods.newMysteriousSnake(this);
+
+        }
+            if ((this.mouseCount().size() > 4 ||  this.duckCount().size() > 4 || this.rabbitCount().size() > 4  ) && random > 9950) {
+
+//                System.out.println("NEW LIFE!");
+                AnimalMethods.newMysteriousEagle(this);
+
+            }
+        }
+
     }
 
     public void testHerb() {
@@ -110,7 +157,12 @@ public class Cell {
     }
 
     public void testLog() {
-//        System.out.print("WAIT THIS" + Thread.currentThread().getName()+ "; ");
+//        System.out.print("5CYCL" + Thread.currentThread().getName()+ "; ");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -178,15 +230,6 @@ public class Cell {
                 .toList();
     }
 
-    public List<String> snakeCount() {
-        return this.getPredators().stream()
-                .map(herbivore -> herbivore.getClass().getName())
-                .toList()
-                .stream()
-                .filter(s -> s.contains("Snake"))
-                .toList();
-    }
-
     public static void totalMouseCount() {
         int result =0;
         for (int i = 1; i <= GameOptions.getSizeX(); i++) {
@@ -198,7 +241,147 @@ public class Cell {
         System.out.println("Total \uD83D\uDC00 on Island : " + result);
 
     }
+    public static int totalMouseCountInt() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).mouseCount().size();
 
+            }
+        }
+        return result;
+
+    }
+
+    public List<String> duckCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Duck"))
+                .toList();
+    }
+
+    public static void totalDuckCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).duckCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83E\uDD86 on Island : " + result);
+
+    }
+    public static int totalDuckCountInt() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).duckCount().size();
+
+            }
+        }
+        return result;
+
+    }
+    public List<String> sheepCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Sheep"))
+                .toList();
+    }
+
+    public static void totalSheepCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).sheepCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC11 on Island : " + result);
+
+    }
+    public static int totalSheepCountInt() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).sheepCount().size();
+            }
+        }
+        return result;
+    }
+    public List<String> rabbitCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Rabbit"))
+                .toList();
+    }
+
+    public static void totalRabbitCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).rabbitCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC07 on Island : " + result);
+
+    }
+    public List<String> goatCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Goat"))
+                .toList();
+    }
+
+    public static void totalGoatCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).goatCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC10 on Island : " + result);
+
+    }
+    public List<String> deerCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Deer"))
+                .toList();
+    }
+
+    public static void totalDeerCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).deerCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83E\uDD8C on Island : " + result);
+
+    }
+
+    public List<String> snakeCount() {
+        return this.getPredators().stream()
+                .map(predator -> predator.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Snake"))
+                .toList();
+    }
 
     public static void totalSnakesCount() {
         int result =0;
@@ -209,6 +392,27 @@ public class Cell {
             }
         }
         System.out.println("Total \uD83D\uDC0D on Island : " + result);
+
+    }
+
+    public List<String> eagleCount() {
+        return this.getPredators().stream()
+                .map(predator -> predator.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Eagle"))
+                .toList();
+    }
+
+    public static void totalEagleCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).eagleCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83E\uDD85 on Island : " + result);
 
     }
 

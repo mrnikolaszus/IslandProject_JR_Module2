@@ -37,10 +37,9 @@ public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узн
         int count = 1;
          for (int i = 1; i <= GameOptions.getSizeX(); i++) {
             for (int j = 1; j <= GameOptions.getSizeY(); j++) {
-                if ( count ==3 ) { result.append("\n");}
 
                 result.append(island.get(i + "*" + j));
-                if ( count > 2 && count%2 ==0 ) { result.append("\n");}
+                 result.append("\n");
                 count ++;
             }
         }

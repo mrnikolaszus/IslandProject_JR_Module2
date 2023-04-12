@@ -5,9 +5,7 @@ import Animals.Predator;
 import Island.Cell;
 import Options.GameOptions;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 public class PredatorsCycle implements Runnable {
     private Cell cell;
@@ -25,8 +23,8 @@ public class PredatorsCycle implements Runnable {
         }
         cell.getPredators().forEach(Predator::lifeCycle);
         try {
-            GameOptions.getCyclicBarrier().await();
-        } catch (InterruptedException | BrokenBarrierException e) {
+            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
             throw new RuntimeException(e);
         }
 
