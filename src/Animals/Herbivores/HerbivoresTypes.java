@@ -1,5 +1,5 @@
 package Animals.Herbivores;
-
+//TODO why did i make this?
 public enum HerbivoresTypes {
     MOUSE,
     DUCK,

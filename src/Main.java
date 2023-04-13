@@ -2,6 +2,7 @@ import Animals.AnimalMethods;
 import Animals.Herbivores.Mouse;
 import Animals.Herbivores.Sheep;
 import Animals.Predators.PredatorsTypes;
+import Animals.Predators.Snake;
 import Island.Island;
 import Options.GameMethods;
 import Options.GameOptions;
@@ -13,12 +14,24 @@ import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) {
-        GameMethods.initializeGame(100,20);
+        GameMethods.initializeGame(20,20);
         PredatorsTypes.init();
         GameMethods.startSimulation();
 
 
+
+
+
+
         /* TESTING */
+
+        //        Island.getCell(2, 1).getHerbivores().add(new Mouse(2, 1, 0.2, 1));
+//        Island.getCell(2, 1).getHerbivores().add(new Mouse(2, 1, 0.2, 1));
+//        Island.getCell(2, 1).getHerbivores().add(new Mouse(2, 1, 0.2, 1));
+//        Island.getCell(2, 1).getHerbivores().add(new Mouse(2, 1, 0.2, 1));
+//        Island.getCell(2, 1).getPredators().add(new Snake(2, 1, 5, 1));
+//        System.out.println(Island.getCell(2,1).getPredators().get(0));
+//        Island.getCell(2,1).getPredators().indexOf(Island.getCell(2,1).getPredators().get(0));
 //        Mouse mouse = new Mouse(3, 3, 2D, 3);
 //        System.out.println(mouse.getClass());
 

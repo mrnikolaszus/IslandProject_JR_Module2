@@ -8,7 +8,8 @@ public abstract class Animal {
     private int posX;
     private int posY;
 
-    private int speed;
+    private final int speed;
+
 
     private double hunger;
     private double weight;
@@ -81,6 +82,7 @@ public abstract class Animal {
     }
 
     public abstract double  getMAX_weight();
+
 
     public Cell getCell() {
         return cell;

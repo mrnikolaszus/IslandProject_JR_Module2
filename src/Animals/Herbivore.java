@@ -77,7 +77,7 @@ public abstract class Herbivore extends Animal{
 //                     System.out.println(" проголадалась на: " + this.getHunger() + " вес: " +this.getWeight());
             this.checkStatus();
             if(!checkPredator()){
-                System.out.println("herb scared of predator");
+//                System.out.println("herb scared of predator");
                 this.move();
             }
 //           System.out.println("Проверяем на этой ячейке нет ли хищников:");
@@ -94,7 +94,7 @@ public abstract class Herbivore extends Animal{
         }
         else {
 
-//            System.out.println(this + "животное умерло от голода");
+            System.out.println(this + "HERBIVORE DIES OF HUNGER");
             this.death();
         }
     }

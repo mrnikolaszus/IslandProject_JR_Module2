@@ -76,19 +76,20 @@ public abstract class Predator extends Animal{
             this.hungry(this.getHunger());
 //                      System.out.println("с утра животное "  + this.getClass()+ " проголадалась на: " + this.getHunger() + " вес: " +this.getWeight());
             this.checkStatus();
+            if(!checkHerbivores()){
+//                System.out.println("Не нашла еду, бегаем:");
+                this.move();
+            }
                 if(this.getWeight() >= (getMAX_weight()*0.8)){
 //                    System.out.println(getMAX_weight() + " МАКС ВЕС В ПРЕДАТОР ЛАЙФЦИКЛ");
                     this.reproduce();}
                 this.eat();
 //            System.out.println(checkHerbivores() + "check hebivores");
-                if(!checkHerbivores()){
-//                System.out.println("Не нашла еду, бегаем:");
-                this.move();
-            }
+
         }
         else {
 
-//            System.out.println(this + "животное умерло от голода");
+//           System.out.println(this + "PREDATOR DIES OF HUNGER");
             this.death();
         }
     }

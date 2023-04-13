@@ -17,9 +17,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Cell {
 
-    private CopyOnWriteArrayList<Predator> predators;
-    private CopyOnWriteArrayList<Omnivore> omnivores;
-    private CopyOnWriteArrayList<Herbivore> herbivores;
+    private volatile CopyOnWriteArrayList<Predator> predators;
+    private volatile CopyOnWriteArrayList<Omnivore> omnivores;
+    private volatile CopyOnWriteArrayList<Herbivore> herbivores;
 
     public String getName() {
         return name;
@@ -31,9 +31,9 @@ public class Cell {
 
     private int insectsCount;
 
-    private static final int MAX_insectsCount = 2000;
+    private static final int MAX_insectsCount = 1000;
     private double plants;
-    private static final double MAX_plants = 600;
+    private static final double MAX_plants = 2000;
 
 
     public Cell(int posX, int posY) {
@@ -43,15 +43,15 @@ public class Cell {
         this.name = +posX + "*" + posY;
         this.posX = posX;
         this.posY = posY;
-        this.plants = 600;  // лучше с нуля начинать
-        this.insectsCount = 2000; // лучше с нуля начинать
+        this.plants = 2000;  // лучше с нуля начинать
+        this.insectsCount = 1000; // лучше с нуля начинать
 
     }
 
 
     @Override
     public String toString() {
-        return String.format("|%-8s %-50s|", "\uD83D\uDDFA️" + name,
+        return String.format("|%-8s %-80s|", "\uD83D\uDDFA️" + name,
                 "\uD83D\uDC1B:" + insectsCount +
                         " \uD83C\uDF3F:" + plants +
                         " \uD83D\uDC00:" + this.mouseCount().size() +
@@ -61,7 +61,12 @@ public class Cell {
                         " \uD83E\uDD85:" + this.eagleCount().size() +
                         " \uD83D\uDC07:" + this.rabbitCount().size() +
                         " \uD83D\uDC10:" + this.goatCount().size() +
-                        " \uD83E\uDD8C:" + this.goatCount().size()
+                        " \uD83E\uDD8C:" + this.goatCount().size() +
+                        " \uD83D\uDC0E:" + this.horseCount().size() +
+                        " \uD83D\uDC03:" + this.buffaloCount().size() +
+                        " \uD83E\uDD8A:" + this.foxCount().size() +
+                        " \uD83D\uDC3A:" + this.wolfCount().size() +
+                        " \uD83D\uDC3B:" + this.bearCount().size()
 
         );
 
@@ -70,13 +75,13 @@ public class Cell {
     public void growing() {
 
         if (this.plants > 50 && this.plants < 100 && this.insectsCount < MAX_insectsCount) {
-            this.insectsCount += 2;
+            this.insectsCount += 1;
         } else if (this.plants > 100 && this.plants < 150 && this.insectsCount < MAX_insectsCount) {
-            this.insectsCount += 6;
+            this.insectsCount += 2;
         } else if (this.plants > 150 && this.insectsCount < MAX_insectsCount) {
-            this.insectsCount += 12;
+            this.insectsCount += 3;
         } else if (this.plants < 50 && this.insectsCount > 1) {
-            this.insectsCount -= 1;
+            this.insectsCount -= 2;
         }
 
         if(this.insectsCount > MAX_insectsCount){
@@ -84,64 +89,56 @@ public class Cell {
         }
 
         if (this.plants < MAX_plants) {
-            this.plants += 3;
+            this.plants += 4;
             if(this.plants > MAX_plants){
                 this.plants = MAX_plants;
             }
         }
 
+        if(this.plants > (MAX_plants*0.8)){
         int random = ThreadLocalRandom.current().nextInt(1, 10001);
+        if (  random > 9000 && random < 9500  ) {
 
-        if (random > 9000) {
-            if (this.plants > (MAX_plants * 0.5) && this.insectsCount > (MAX_insectsCount * 0.5) && random > 9900) {
+            AnimalMethods.newMysteriousRabbit(this);
+            AnimalMethods.newMysteriousRabbit(this);}
 
-//                System.out.println("NEW LIFE!");
+            if (  random > 9500 && random < 9600  ) {
+            AnimalMethods.newMysteriousSheep(this);}
+            if (  random > 9600 && random < 9700  ) {
+            AnimalMethods.newMysteriousGoat(this);}
+            if (  random > 9700 && random < 9800  ) {
+            AnimalMethods.newMysteriousDeer(this);}
+            if (  random > 9800 && random < 9900  ) {
+            AnimalMethods.newMysteriousHorse(this);}
+            if (  random > 9900 && random < 10000  ) {
+            AnimalMethods.newMysteriousBuffalo(this);}
+        }
+
+        if(this.insectsCount > (MAX_insectsCount*0.8)) {
+            int random = ThreadLocalRandom.current().nextInt(1, 10001);
+            if (random > 9000 && random < 9500) {
                 AnimalMethods.newMysteriousMouse(this);
-
-        }
-         if (this.plants > (MAX_plants * 0.8) && this.insectsCount > (MAX_insectsCount * 0.8) && random > 9960) {
-
-
-//                System.out.println("NEW LIFE!");
-             AnimalMethods.newMysteriousSheep(this);
-
-        }
-            if (this.plants > (MAX_plants * 0.6) && this.insectsCount > (MAX_insectsCount * 0.6) && random > 9990) {
-
-
-//                System.out.println("NEW LIFE!");
-                AnimalMethods.newMysteriousGoat(this);
-
+                AnimalMethods.newMysteriousMouse(this);
             }
-            if (this.plants > (MAX_plants * 0.8)  && random > 9960) {
-
-
-//                System.out.println("NEW LIFE!");
-                AnimalMethods.newMysteriousRabbit(this);
-
-            }
-
-             if (this.plants > (MAX_plants * 0.75) && this.insectsCount > (MAX_insectsCount * 0.75) && random > 9930) {
-
-
-//                System.out.println("NEW LIFE!");
-                 AnimalMethods.newMysteriousDuck(this);
-
-            }
-        if ((this.mouseCount().size() > 5 ||  this.duckCount().size() > 5 || this.rabbitCount().size() > 5 ) && random > 9900) {
-
-//                System.out.println("NEW LIFE!");
-            AnimalMethods.newMysteriousSnake(this);
-
-        }
-            if ((this.mouseCount().size() > 4 ||  this.duckCount().size() > 4 || this.rabbitCount().size() > 4  ) && random > 9950) {
-
-//                System.out.println("NEW LIFE!");
-                AnimalMethods.newMysteriousEagle(this);
-
+            if (random > 9500 && random < 9900) {
+                AnimalMethods.newMysteriousDuck(this);
             }
         }
 
+         if(this.insectsCount < (MAX_insectsCount*0.5) || this.plants < (MAX_plants*0.5) ) {
+             int random = ThreadLocalRandom.current().nextInt(1, 10001);
+             if (random > 9000 && random < 9300){
+             AnimalMethods.newMysteriousSnake(this);}
+             if (random > 9300 && random < 9600){
+             AnimalMethods.newMysteriousEagle(this);}
+             if (random > 9600 && random < 9700){
+             AnimalMethods.newMysteriousFox(this);}
+             if (random > 9700 && random < 9800){
+             AnimalMethods.newMysteriousWolf(this);}
+             if (random > 9800 && random < 9900){
+             AnimalMethods.newMysteriousBear(this);}
+
+         }
     }
 
     public void testHerb() {
@@ -193,7 +190,7 @@ public class Cell {
         return posY;
     }
 
-    public CopyOnWriteArrayList<Predator> getPredators() {
+    public synchronized CopyOnWriteArrayList<Predator> getPredators() {
         return predators;
     }
 
@@ -217,7 +214,7 @@ public class Cell {
         return omnivores;
     }
 
-    public CopyOnWriteArrayList<Herbivore> getHerbivores() {
+    public synchronized CopyOnWriteArrayList<Herbivore> getHerbivores() {
         return herbivores;
     }
 
@@ -373,6 +370,47 @@ public class Cell {
         System.out.println("Total \uD83E\uDD8C on Island : " + result);
 
     }
+    public List<String> horseCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Horse"))
+                .toList();
+    }
+
+    public static void totalHorseCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).horseCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC0E on Island : " + result);
+
+    }
+    public List<String> buffaloCount() {
+        return this.getHerbivores().stream()
+                .map(herbivore -> herbivore.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Buffalo"))
+                .toList();
+    }
+
+    public static void totalBuffaloCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).buffaloCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC03 on Island : " + result);
+
+    }
+
 
     public List<String> snakeCount() {
         return this.getPredators().stream()
@@ -413,6 +451,66 @@ public class Cell {
             }
         }
         System.out.println("Total \uD83E\uDD85 on Island : " + result);
+
+    }
+    public List<String> foxCount() {
+        return this.getPredators().stream()
+                .map(predator -> predator.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Fox"))
+                .toList();
+    }
+
+    public static void totalFoxCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).foxCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83E\uDD8A on Island : " + result);
+
+    }
+    public List<String> wolfCount() {
+        return this.getPredators().stream()
+                .map(predator -> predator.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Wolf"))
+                .toList();
+    }
+
+    public static void totalWolfCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).wolfCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC3A on Island : " + result);
+
+    }
+    public List<String> bearCount() {
+        return this.getPredators().stream()
+                .map(predator -> predator.getClass().getName())
+                .toList()
+                .stream()
+                .filter(s -> s.contains("Bear"))
+                .toList();
+    }
+
+    public static void totalBearCount() {
+        int result =0;
+        for (int i = 1; i <= GameOptions.getSizeX(); i++) {
+            for (int j = 1; j <= GameOptions.getSizeY(); j++) {
+                result += Island.getCell(i, j).bearCount().size();
+
+            }
+        }
+        System.out.println("Total \uD83D\uDC3B on Island : " + result);
 
     }
 

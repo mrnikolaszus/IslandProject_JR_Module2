@@ -120,6 +120,11 @@ public class GameMethods {
         Cell.totalRabbitCount();
         Cell.totalGoatCount();
         Cell.totalDeerCount();
+        Cell.totalHorseCount();
+        Cell.totalBuffaloCount();
+        Cell.totalFoxCount();
+        Cell.totalWolfCount();
+        Cell.totalBearCount();
     }
 
 }

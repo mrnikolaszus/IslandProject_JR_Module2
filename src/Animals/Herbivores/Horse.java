@@ -7,37 +7,34 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /*
-Goat:
-70kg max weight
-5kg lose weight per day
+Horse:
+400kg max weight
+20kg lose weight per day
 
 
  */
-public class Goat extends Herbivore {
-    public static double MAX_WEIGHT  = 70D;
-    public static double LOSE_WEIGHT_PER_DAY  = 5D;
-    public static double FOOD_PLANTS_SIZE = 10D;
+public class Horse extends Herbivore {
+    public static double MAX_WEIGHT  = 400D;
+    public static double LOSE_WEIGHT_PER_DAY  = 20D;
+    public static double FOOD_PLANTS_SIZE = 60D;
     public static int FOOD_INSECT_SIZE = -1;
-    public static double MAX_RAISE_WEIGHT = 10D;
+    public static double MAX_RAISE_WEIGHT = 60D;
     public static int TRIES_TO_CATCH_FOOD = 10;
-    public static int SPEED =3;
-    public static double WEIGHT_AT_START = 23;
-    public static int MAX_CELL_COUNT = 140;
-
+    public static int SPEED =4;
+    public static double WEIGHT_AT_START = 120;
+    public static int MAX_CELL_COUNT = 20;
     @Override
     public double getMAX_weight() {
         return MAX_WEIGHT;
     }
 
 
-    public Goat(int posX, int posY, double weight, int speed) {
+    public Horse(int posX, int posY, double weight, int speed) {
         super(posX, posY, weight, speed);
         this.setHunger(LOSE_WEIGHT_PER_DAY);;
         this.setCell(Island.getCell(this.getPosX(), this.getPosY()));
-//        System.out.println("Goat's constructor + this.hunger: " + this.hunger );
-
+//        System.out.println("Horse's constructor + this.hunger: " + this.hunger );
     }
-
     @Override
     public boolean checkPredator() {
         return super.checkPredator();
@@ -56,33 +53,32 @@ public class Goat extends Herbivore {
 
     @Override
     public void reproduce() {
-        int Goats = this.getCell().goatCount().size();
-        if (Goats < MAX_CELL_COUNT) {
-            if (Goats > 2 && Goats < 100) {
+        int Horses = this.getCell().horseCount().size();
+        if (Horses < MAX_CELL_COUNT) {
+            if (Horses > 2 && Horses < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
                 if (random > 975) {
-//                System.out.println("goat born: " + mouses);
-                    newCommonGoat();
+//                System.out.println("mouse born: " + mouses);
+                    newCommonHorse();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
-            if (Goats > 100 && Goats < 200) {
+            if (Horses > 100 && Horses < 200) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
                 if (random > 900) {
-//                System.out.println("2 goats born: " + mouses);
-                    newCommonGoat();
-                    newCommonGoat();
+//                System.out.println("2 mouses born: " + mouses);
+                    newCommonHorse();
+                    newCommonHorse();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
         }
     }
-    private void newCommonGoat() {
-        this.getCell().getHerbivores().add(new Goat(this.getPosX(), this.getPosY(), WEIGHT_AT_START, SPEED));
+    private void newCommonHorse() {
+        this.getCell().getHerbivores().add(new Horse(this.getPosX(), this.getPosY(), WEIGHT_AT_START, SPEED));
     }
-
     @Override
     public void eat() {
 
@@ -93,8 +89,6 @@ public class Goat extends Herbivore {
                 this.move();
             }
 //        System.out.println(this.getWeight() + " health before cycle");
-
-
             if (this.getWeight() > 0 && this.getWeight() < getMAX_weight() && checkPlants()) {
 //           System.out.println( this + "eating plants");
                 if (this.getCell().getPlants() > FOOD_PLANTS_SIZE) {
@@ -109,16 +103,13 @@ public class Goat extends Herbivore {
         }
 //        System.out.println(this.getWeight() + " health in the cycle");
     }
-
     @Override
     public void lifeCycle() {
         super.lifeCycle();
     }
-
-
     @Override
     public String toString() {
-        return "Goat{" +
+        return "Horse{" +
                 ", posX=" + this.getPosX() +
                 ", posY=" + this.getPosY() +
                 ", weight=" + this.getWeight() +
