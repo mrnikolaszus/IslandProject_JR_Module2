@@ -27,7 +27,7 @@ public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узн
         return island.get(x + "*" + y);
     }
 
-    public static Island getIsland() {
+    public static synchronized Island getIsland() {
         return island;
     }
 

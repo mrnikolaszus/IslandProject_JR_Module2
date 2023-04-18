@@ -10,32 +10,33 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalMethods {
     public synchronized static String checkTarget(Predator p, Herbivore h, int a){
-        if(a < 1){ return " ";}
-        if((p.getCell().getHerbivores().size() - a ) <= 2 ){
-            return  " ";}
-       if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Mouse")) {
-           return "Mouse";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Duck")) {
-           return "Duck";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Goat")) {
-           return "Goat";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Rabbit")) {
-           return "Rabbit";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Sheep")) {
-           return "Sheep";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Buffalo")) {
-           return "Buffalo";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Deer")) {
-            return "Deer";
-        }else if( p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getClass().getName().contains("Horse")) {
-            return "Horse";
+        int indexOfHerb = p.getCell().getHerbivores().size()-a;
+        if((p.getCell().getHerbivores().size() - indexOfHerb) >= 1 ) {
+
+//            System.out.println((p.getCell().getHerbivores().size() - indexOfHerb) + "  <1 ???? ERROR ???");
+            if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Mouse")) {
+                return "Mouse";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Duck")) {
+                return "Duck";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Goat")) {
+                return "Goat";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Rabbit")) {
+                return "Rabbit";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Sheep")) {
+                return "Sheep";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Buffalo")) {
+                return "Buffalo";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Deer")) {
+                return "Deer";
+            } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Horse")) {
+                return "Horse";
+            }
         }
-       else return " ";
+        return " ";
     }
 
-    public synchronized static boolean tryToCatch(Predator p, Herbivore h, int a){
-        if(a < 1){ return false;}
-        if((p.getCell().getHerbivores().size() - a ) <= 0 ){
+    public static boolean tryToCatch(Predator p, Herbivore h, int a){
+        if((p.getCell().getHerbivores().size() - a ) < 1 ){
             return  false;}
        double chance = p.type.chance(checkTarget(p,h, a));
 //        System.out.println(p.type);
@@ -51,20 +52,22 @@ public class AnimalMethods {
     }
 
     public synchronized static void consumeHerbivore(Predator p, Herbivore h, int a){
-        if(a < 1){ return;}
-        if((p.getCell().getHerbivores().size() - a ) <= 2 ){
-            return;}
+        int indexOfHerb = p.getCell().getHerbivores().size()-a;
+//        System.out.println((p.getCell().getHerbivores().size() - indexOfHerb) + " < 1??? if yes, break and return ");
+        if((p.getCell().getHerbivores().size() - indexOfHerb ) >= 1 ) {
 
 //                          System.out.println("predator got herbivore = " );
-        System.out.println(p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a) + " " + a + " weight: " + p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getWeight());
-            p.raiseWeight(p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a).getWeight()); // 0.01
-        System.out.println(p.getCell().getHerbivores().get(p.getCell().getHerbivores().size()-a) + " " + a + "remove");
-            p.getCell().getHerbivores().remove(p.getCell().getHerbivores().size()-a);
+//            System.out.println(p.getCell().getHerbivores().get(indexOfHerb) + " " + a + " weight: " + p.getCell().getHerbivores().get(indexOfHerb).getWeight());
+//            System.out.println("take herb from array, index of herb = : " + indexOfHerb);
+            p.raiseWeight(p.getCell().getHerbivores().get(indexOfHerb).getWeight());
+            //            p.raiseWeight(p.getCell().getHerbivores().get(indexOfHerb).getWeight()); // 0.01
+//            System.out.println(p.getCell().getHerbivores().get(indexOfHerb) + " " + a + "remove");
+            p.getCell().getHerbivores().remove(indexOfHerb);
 //                          System.out.println("predator" + p.getClass().getName() + " eat herbivore");
             if (p.getWeight() > p.getMAX_weight()) {
                 p.setWeight(p.getMAX_weight());
             }
-
+        }
     }
 
     public static void newMysteriousMouse(Cell c){

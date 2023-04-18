@@ -59,7 +59,7 @@ public class Horse extends Herbivore {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
                 if (random > 975) {
-//                System.out.println("mouse born: " + mouses);
+                System.out.println("Horse born");
                     newCommonHorse();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
@@ -68,7 +68,7 @@ public class Horse extends Herbivore {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
                 if (random > 900) {
-//                System.out.println("2 mouses born: " + mouses);
+                System.out.println("Horse born");
                     newCommonHorse();
                     newCommonHorse();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));

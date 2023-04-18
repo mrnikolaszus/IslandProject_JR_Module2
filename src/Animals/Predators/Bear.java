@@ -67,7 +67,7 @@ public class Bear extends Predator {
 
 
     @Override
-    public void eat() {
+    public synchronized void eat() {
         int attemp =1;
         double daylyPrey = 0D;
         int checkSize = 1;
@@ -81,7 +81,7 @@ public class Bear extends Predator {
                 attemp++;
                 continue;}
 //                        System.out.println("Bear found mouse on cell = " + attemp);
-            if((this.getCell().getHerbivores().size() - (checkSize)) <= 2 ){
+            if((this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
                 checkSize=1;
                 this.move();
                 attemp++;
@@ -97,7 +97,7 @@ public class Bear extends Predator {
                 continue;
 
             }
-            if ((this.getCell().getHerbivores().size() - (checkSize +1)) <= 1 ){
+            if ((this.getCell().getHerbivores().size() - (checkSize +1)) < 1 ){
                 checkSize=1;
                 this.move();
                 attemp++;

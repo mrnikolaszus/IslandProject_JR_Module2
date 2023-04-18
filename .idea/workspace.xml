@@ -5,28 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a6fcb70-6729-4ff2-b322-068491ab1564" name="Changes" comment="added: Deer, Duck, Eagle, Goad, Rabbit, Sheep&#10;lots bugs fixes">
-      <change afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Buffalo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Horse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Animals/Predators/Bear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Animals/Predators/Fox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Animals/Predators/Wolf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/AnimalMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/AnimalMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Deer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Deer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Duck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Duck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Goat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Goat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/HerbivoresTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/HerbivoresTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Mouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Rabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Rabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Sheep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Sheep.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Horse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Bear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Eagle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Eagle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Fox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Fox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Wolf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Wolf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Island/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Island/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Island/Island.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Island/Island.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Options/GameMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Options/GameMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/HerbivoresCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/HerbivoresCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/Logging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/Logging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/NatureCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/NatureCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/OmnivoresCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/OmnivoresCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/PredatorsCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/PredatorsCycle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Predator extends Animal{
 
-    public PredatorsTypes type;
+    public volatile PredatorsTypes type;
 
     public Predator(int posX, int posY, double weight, int speed) {
         super(posX, posY, weight, speed);

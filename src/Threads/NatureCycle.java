@@ -21,8 +21,8 @@ public class NatureCycle implements Runnable {
         }
         cell.growing();
         try {
-            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+            GameOptions.getCyclicBarrier().await();
+        } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }
 

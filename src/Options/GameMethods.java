@@ -71,7 +71,7 @@ public class GameMethods {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
 //                System.out.println("still logging");
             } while (GameOptions.isIsCycleReady());         //TODO awefull join method???
@@ -106,7 +106,7 @@ public class GameMethods {
     public static void oneWeekLog(int totalWeeks){
         System.out.println("___________________________________");
         System.out.println("one week has passed");
-        System.out.println(Island.getIsland());
+//        System.out.println(Island.getIsland());
         System.out.println("New Week Started");
         System.out.println(totalWeeks + " weeks passed");
     }

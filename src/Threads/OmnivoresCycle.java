@@ -17,12 +17,12 @@ public class OmnivoresCycle implements Runnable {
         try {
             Thread.sleep(random);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         cell.testOmni();
         try {
-            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+            GameOptions.getCyclicBarrier().await();
+        } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }
 

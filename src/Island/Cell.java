@@ -29,10 +29,10 @@ public class Cell {
     private int posX;
     private int posY;
 
-    private int insectsCount;
+    private volatile int insectsCount;
 
     private static final int MAX_insectsCount = 1000;
-    private double plants;
+    private volatile double plants;
     private static final double MAX_plants = 2000;
 
 
@@ -97,45 +97,51 @@ public class Cell {
 
         if(this.plants > (MAX_plants*0.8)){
         int random = ThreadLocalRandom.current().nextInt(1, 10001);
-        if (  random > 9000 && random < 9500  ) {
-
-            AnimalMethods.newMysteriousRabbit(this);
+            if (  random > 9000 && random < 9500  ) {
+                AnimalMethods.newMysteriousMouse(this);}
+            if (  random > 9500 && random < 9700  ) {
             AnimalMethods.newMysteriousRabbit(this);}
+            if (  random > 9700 && random < 9750  ) {
+                AnimalMethods.newMysteriousRabbit(this);
+                AnimalMethods.newMysteriousRabbit(this);}
 
-            if (  random > 9500 && random < 9600  ) {
+            if (  random > 9750 && random < 9800  ) {
             AnimalMethods.newMysteriousSheep(this);}
-            if (  random > 9600 && random < 9700  ) {
+            if (  random > 9800 && random < 9850  ) {
             AnimalMethods.newMysteriousGoat(this);}
-            if (  random > 9700 && random < 9800  ) {
+            if (  random > 9850 && random < 9900  ) {
             AnimalMethods.newMysteriousDeer(this);}
-            if (  random > 9800 && random < 9900  ) {
+            if (  random > 9900 && random < 9950  ) {
             AnimalMethods.newMysteriousHorse(this);}
-            if (  random > 9900 && random < 10000  ) {
+            if (  random > 9950 && random < 10000  ) {
             AnimalMethods.newMysteriousBuffalo(this);}
         }
 
         if(this.insectsCount > (MAX_insectsCount*0.8)) {
             int random = ThreadLocalRandom.current().nextInt(1, 10001);
-            if (random > 9000 && random < 9500) {
+            if (random > 8000 && random < 9450) {
+                AnimalMethods.newMysteriousMouse(this);
+            }
+            if (random > 9450 && random < 9700) {
                 AnimalMethods.newMysteriousMouse(this);
                 AnimalMethods.newMysteriousMouse(this);
             }
-            if (random > 9500 && random < 9900) {
+            if (random > 9700 && random < 9900) {
                 AnimalMethods.newMysteriousDuck(this);
             }
         }
 
          if(this.insectsCount < (MAX_insectsCount*0.5) || this.plants < (MAX_plants*0.5) ) {
              int random = ThreadLocalRandom.current().nextInt(1, 10001);
-             if (random > 9000 && random < 9300){
+             if (random > 9400 && random < 9550){
              AnimalMethods.newMysteriousSnake(this);}
-             if (random > 9300 && random < 9600){
+             if (random > 9550 && random < 9700){
              AnimalMethods.newMysteriousEagle(this);}
-             if (random > 9600 && random < 9700){
+             if (random > 9700 && random < 9775){
              AnimalMethods.newMysteriousFox(this);}
-             if (random > 9700 && random < 9800){
+             if (random > 9775 && random < 9850){
              AnimalMethods.newMysteriousWolf(this);}
-             if (random > 9800 && random < 9900){
+             if (random > 9850 && random < 9900){
              AnimalMethods.newMysteriousBear(this);}
 
          }

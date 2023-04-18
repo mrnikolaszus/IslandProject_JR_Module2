@@ -19,13 +19,13 @@ public class PredatorsCycle implements Runnable {
         try {
             Thread.sleep(random);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         cell.getPredators().forEach(Predator::lifeCycle);
         try {
-            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
-            throw new RuntimeException(e);
+            GameOptions.getCyclicBarrier().await();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            e.printStackTrace();
         }
 
     }

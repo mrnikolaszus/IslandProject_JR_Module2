@@ -4,15 +4,15 @@ import Island.*;
 import Options.GameOptions;
 
 public abstract class Animal {
-    private Cell cell;
-    private int posX;
-    private int posY;
+    private volatile Cell cell;
+    private volatile int posX;
+    private volatile int posY;
 
-    private final int speed;
+    private  final int speed;
 
 
-    private double hunger;
-    private double weight;
+    private volatile double hunger;
+    private volatile double weight;
 
 
     public Animal(int posX, int posY, double weight, int speed) {

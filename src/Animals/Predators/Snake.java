@@ -63,7 +63,7 @@ public class Snake extends Predator {
     }
 
     @Override
-    public void eat() {
+    public synchronized void eat() {
         int attemp =1;
         double daylyPrey = 0D;
         int checkSize = 1;
@@ -77,25 +77,27 @@ public class Snake extends Predator {
                         attemp++;
                         continue;}
 //                        System.out.println("Snake found mouse on cell = " + attemp);
-                            if((this.getCell().getHerbivores().size() - (checkSize)) <= 2 ){
+                            if((this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
                                 checkSize=1;
                                 this.move();
                                 attemp++;
                                 continue;}
-                        if ((this.getCell().getHerbivores().size() - (checkSize)) > 0 && AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
+                            if ((this.getCell().getHerbivores().size() - (checkSize)) > 0) {
+                                if (AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println("Snake catches herb");
-                            daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size()-checkSize).getWeight();
-                            AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
-                            if(daylyPrey > MAX_RAISE_WEIGHT){ //MAX_RAISE_WEIGHT
+                                    daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
+                                    AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
+                                    if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
 //                                System.out.println("Snake FULL");
-                                break;
-                            }
-                            attemp++;
-                            continue;
+                                        break;
+                                    }
+                                    attemp++;
+                                    continue;
 
-                        }
+                                }
+                            }
 //                    System.out.println("Snake didnt catch herb");
-                        if ((this.getCell().getHerbivores().size() - (checkSize +1)) <= 1 ){
+                        if ((this.getCell().getHerbivores().size() - (checkSize +1)) < 1 ){
 //                            System.out.println("Snake sees no more herb and moves");
                             checkSize=1;
                             this.move();

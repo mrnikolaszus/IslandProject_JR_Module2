@@ -17,12 +17,12 @@ public class HerbivoresCycle implements Runnable {
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         cell.getHerbivores().forEach(Herbivore::lifeCycle);
         try {
-            GameOptions.getCyclicBarrier().await(3, TimeUnit.SECONDS);
-        } catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+            GameOptions.getCyclicBarrier().await();
+        } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }
 
