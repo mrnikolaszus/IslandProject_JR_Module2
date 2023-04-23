@@ -89,11 +89,11 @@ public class Wolf extends Predator {
                 this.move();
                 attemp++;
                 continue;}
-            if ((this.getCell().getHerbivores().size() - (checkSize)) > 0) {
+            if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
                 if ( AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println(" Wolf method logic");
                     daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
-                    if ((this.getCell().getHerbivores().size() - (checkSize)) > 0) {
+                    if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
                     AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
                     if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
                         break;
