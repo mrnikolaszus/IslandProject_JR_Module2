@@ -14,11 +14,7 @@ public class NatureCycle implements Runnable {
     @Override
     public void run() {
         GameOptions.setIsCycleReady(false);
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         cell.growing();
         try {
             GameOptions.getCyclicBarrier().await();

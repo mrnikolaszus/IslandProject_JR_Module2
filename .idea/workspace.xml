@@ -4,30 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a6fcb70-6729-4ff2-b322-068491ab1564" name="Changes" comment="bugs fixes">
-      <change afterPath="$PROJECT_DIR$/src/Threads/Logging2.java" afterDir="false" />
+    <list default="true" id="5a6fcb70-6729-4ff2-b322-068491ab1564" name="Changes" comment="changes in Logging&#10;bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/AnimalMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/AnimalMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Buffalo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Buffalo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Deer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Deer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Duck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Duck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Goat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Goat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Horse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Mouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Rabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Rabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Herbivores/Sheep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Herbivores/Sheep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Animals/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Bear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Eagle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Eagle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Fox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Fox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Animals/Predators/Wolf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Animals/Predators/Wolf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Island/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Island/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Island/Island.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Island/Island.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Options/GameMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Options/GameMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Threads/Logging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/Logging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/HerbivoresCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/HerbivoresCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/NatureCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/NatureCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/OmnivoresCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/OmnivoresCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads/PredatorsCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads/PredatorsCycle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681840733922</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changes in Logging&#10;bug fixes">
+      <created>1682244263501</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682244263501</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,7 +127,8 @@
     <MESSAGE value="plants (functioning)&#10;insects (functioning)&#10;mouse added (functioning)&#10;snake added (functioning)&#10;lots of bug fixes&#10;//TODO eatMethod check type of Animal" />
     <MESSAGE value="added: Deer, Duck, Eagle, Goad, Rabbit, Sheep&#10;lots bugs fixes" />
     <MESSAGE value="bugs fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugs fixes" />
+    <MESSAGE value="changes in Logging&#10;bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes in Logging&#10;bug fixes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/IslandProject_JR_Module2$Main.ic" NAME="Main Coverage Results" MODIFIED="1682188173346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

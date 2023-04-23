@@ -11,14 +11,10 @@ public class OmnivoresCycle implements Runnable {
         this.cell = cell;
     }
 
-    int random = ThreadLocalRandom.current().nextInt(1, 50);
+
     @Override
     public void run() {
-        try {
-            Thread.sleep(random);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         cell.testOmni();
         try {
             GameOptions.getCyclicBarrier().await();

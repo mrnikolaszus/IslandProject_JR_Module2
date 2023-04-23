@@ -14,11 +14,7 @@ public class HerbivoresCycle implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         cell.getHerbivores().forEach(Herbivore::lifeCycle);
         try {
             GameOptions.getCyclicBarrier().await();
