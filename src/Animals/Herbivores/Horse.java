@@ -58,19 +58,22 @@ public class Horse extends Herbivore {
             if (Horses > 2 && Horses < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 975) {
-                System.out.println("Horse born");
+                if (random > 700) {
+//                System.out.println("Horse born");
                     newCommonHorse();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
             if (Horses > 100 && Horses < 200) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
-                System.out.println("Horse born");
+                if (random > 800) {
+//                System.out.println("Horse born");
                     newCommonHorse();
+                    Island.incBornHerbAnimals();
                     newCommonHorse();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }

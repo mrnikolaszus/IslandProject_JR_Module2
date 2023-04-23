@@ -84,7 +84,7 @@ public abstract class Animal {
     public abstract double  getMAX_weight();
 
 
-    public Cell getCell() {
+    public synchronized Cell getCell() {
         return cell;
     }
 

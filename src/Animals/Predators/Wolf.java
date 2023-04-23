@@ -19,7 +19,7 @@ public class Wolf extends Predator {
     public static double MAX_WEIGHT  = 50D;
     public static double LOSE_WEIGHT_PER_DAY  = 3D;
     public static double MAX_RAISE_WEIGHT = 8D;
-    public static int TRIES_TO_CATCH_FOOD = 30;
+    public static int TRIES_TO_CATCH_FOOD = 35;
     public static int SPEED =3;
     public static double WEIGHT_AT_START = 17;
     public static int MAX_CELL_COUNT = 30;
@@ -41,20 +41,23 @@ public class Wolf extends Predator {
     public void reproduce() {
         int Wolfs = this.getCell().wolfCount().size();
         if (Wolfs < MAX_CELL_COUNT) {
-            if (Wolfs > 2 && Wolfs < 100) {
+            if (Wolfs >= 2 && Wolfs < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
+                if (random > 200) {
                     newCommonWolf();
+                    Island.incBornAnimals();
 
                 }
             }
             if (Wolfs > 10) {
 //                System.out.println("на этой ячейке всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 800) {
+                if (random > 500) {
                     newCommonWolf();
+                    Island.incBornAnimals();
                     newCommonWolf();
+                    Island.incBornAnimals();
 //
                 }
             }
@@ -86,16 +89,18 @@ public class Wolf extends Predator {
                 this.move();
                 attemp++;
                 continue;}
-            if ((this.getCell().getHerbivores().size() - (checkSize)) > 0 && AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
+            if ((this.getCell().getHerbivores().size() - (checkSize)) > 1) {
+                if ( AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println(" Wolf method logic");
-                daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size()-checkSize).getWeight();
-                AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
-                if(daylyPrey > MAX_RAISE_WEIGHT){ //MAX_RAISE_WEIGHT
-                    break;
-                }
-                attemp++;
-                continue;
+                    daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
+                    AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
+                    if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
+                        break;
+                    }
+                    attemp++;
+                    continue;
 
+                }
             }
             if ((this.getCell().getHerbivores().size() - (checkSize +1)) < 1 ){
                 checkSize=1;

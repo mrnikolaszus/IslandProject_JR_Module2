@@ -61,19 +61,22 @@ public class Goat extends Herbivore {
             if (Goats > 2 && Goats < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 975) {
-                System.out.println("Goat born");
+                if (random > 700) {
+//                System.out.println("Goat born");
                     newCommonGoat();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
             if (Goats > 100 && Goats < 200) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
-                System.out.println("Goat born");
+                if (random > 800) {
+//                System.out.println("Goat born");
                     newCommonGoat();
+                    Island.incBornHerbAnimals();
                     newCommonGoat();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }

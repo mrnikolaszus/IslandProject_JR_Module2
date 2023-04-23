@@ -58,19 +58,22 @@ public class Deer extends Herbivore {
             if (Deers > 2 && Deers < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 975) {
-                System.out.println("DEER born");
+                if (random > 700) {
+//                System.out.println("DEER born");
                     newCommonDeer();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
             if (Deers > 100 && Deers < 200) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
-                System.out.println("2 DEER born");
+                if (random > 800) {
+//                System.out.println("2 DEER born");
                     newCommonDeer();
+                    Island.incBornHerbAnimals();
                     newCommonDeer();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }

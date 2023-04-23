@@ -39,20 +39,27 @@ public class Snake extends Predator {
     @Override
     public void reproduce() {
         int snakes = this.getCell().snakeCount().size();
-        if (snakes < MAX_CELL_COUNT) {
-            if (snakes > 2 && snakes < 100) {
-//                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
+//        System.out.println("Snake tries to reproduce, Snakes count on this cell = : " + snakes);
+//        System.out.println(snakes + " = snakes <  Max count ???" + MAX_CELL_COUNT );
+        if (snakes < MAX_CELL_COUNT && snakes >= 2 && snakes < 100) {
+//            System.out.println( "SO YOU ARE HERE AND CHECK AGAIN snakes" +  snakes);
+//
+//                System.out.println(" 2 or more snakes tries to reproduce");
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
+                if (random > 200) {
                     newCommonSnake();
+//                    System.out.println(" new snake born");
+                    Island.incBornAnimals();
                 }
-            }
+
             if (snakes > 15 ) {
 //                System.out.println("на этой ячейке всего животных такого типа: " + thisAnimalCount);
-                int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 800) {
+
+                if (random > 500) {
                     newCommonSnake();
+                    Island.incBornAnimals();
                     newCommonSnake();
+                    Island.incBornAnimals();
                 }
             }
         }
@@ -82,7 +89,7 @@ public class Snake extends Predator {
                                 this.move();
                                 attemp++;
                                 continue;}
-                            if ((this.getCell().getHerbivores().size() - (checkSize)) > 0) {
+                            if ((this.getCell().getHerbivores().size() - (checkSize)) > 1) {
                                 if (AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println("Snake catches herb");
                                     daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
@@ -102,6 +109,7 @@ public class Snake extends Predator {
                             checkSize=1;
                             this.move();
                             attemp++;
+                            continue;
 
                         } else { checkSize++;
 //                            System.out.println("Snake sees new target on same cell" + checkSize);

@@ -40,21 +40,29 @@ public class Eagle extends Predator {
     @Override
     public void reproduce() {
         int Eagles = this.getCell().eagleCount().size();
-        if (Eagles < MAX_CELL_COUNT) {
-            if (Eagles > 2 && Eagles < 100) {
-//                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
+//        System.out.println("Eagle tries to reproduce, Eagles count on this cell = : " + Eagles);
+//        System.out.println(Eagles + " = Eagles <  Max count ???" + MAX_CELL_COUNT );
+        if (Eagles < MAX_CELL_COUNT && Eagles >= 2 && Eagles < 100) {
+//            System.out.println( "SO YOU ARE HERE AND CHECK AGAIN EAGLES" +  Eagles);
+//
+//                System.out.println(" 2 or more Eagles tries to reproduce");
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
-                    newCommonEagle();
 
-                }
+                if (random > 200) {
+                    newCommonEagle();
+//                    System.out.println(" new Eagle born");
+                    Island.incBornAnimals();
+
+
             }
             if (Eagles > 10) {
 //                System.out.println("на этой ячейке всего животных такого типа: " + thisAnimalCount);
-                int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 800) {
+
+                if (random > 500) {
                     newCommonEagle();
+                    Island.incBornAnimals();
                     newCommonEagle();
+                    Island.incBornAnimals();
 //
                 }
             }
@@ -86,16 +94,17 @@ public class Eagle extends Predator {
                 this.move();
                 attemp++;
                 continue;}
-            if ((this.getCell().getHerbivores().size() - (checkSize)) > 0  && AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
+            if ((this.getCell().getHerbivores().size() - (checkSize)) > 1) {
+            if ( AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println(" Eagle method logic");
-                daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size()-checkSize).getWeight();
+                daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
                 AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
-                if(daylyPrey > MAX_RAISE_WEIGHT){ //MAX_RAISE_WEIGHT
+                if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
                     break;
                 }
                 attemp++;
                 continue;
-
+            }
             }
             if ((this.getCell().getHerbivores().size() - (checkSize +1)) < 1 ){
                 checkSize=1;

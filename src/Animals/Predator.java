@@ -80,8 +80,8 @@ public abstract class Predator extends Animal{
 //                System.out.println("Не нашла еду, бегаем:");
                 this.move();
             }
-                if(this.getWeight() >= (getMAX_weight()*0.8)){
-//                    System.out.println(getMAX_weight() + " МАКС ВЕС В ПРЕДАТОР ЛАЙФЦИКЛ");
+                if(this.getWeight() >= (getMAX_weight()*0.5)){
+//                    System.out.println( this + " " + getMAX_weight() + " TRIES TO REPRODUCE");
                     this.reproduce();}
                 this.eat();
 //            System.out.println(checkHerbivores() + "check hebivores");
@@ -90,6 +90,7 @@ public abstract class Predator extends Animal{
         else {
 
 //           System.out.println(this + "PREDATOR DIES OF HUNGER");
+            Island.incDeadAnimals();
             this.death();
         }
     }

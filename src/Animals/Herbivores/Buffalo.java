@@ -59,19 +59,22 @@ public class Buffalo extends Herbivore {
             if (Buffalos > 2 && Buffalos < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 975) {
+                if (random > 700) {
 //                System.out.println("mouse born: " + mouses);
                     newCommonBuffalo();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
             if (Buffalos > 100 && Buffalos < 200) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
+                if (random > 800) {
 //                System.out.println("2 mouses born: " + mouses);
                     newCommonBuffalo();
+                    Island.incBornHerbAnimals();
                     newCommonBuffalo();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }

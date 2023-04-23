@@ -94,7 +94,8 @@ public abstract class Herbivore extends Animal{
         }
         else {
 
-            System.out.println(this + "HERBIVORE DIES OF HUNGER");
+//            System.out.println(this + "HERBIVORE DIES OF HUNGER");
+            Island.incDeadHerbAnimals();
             this.death();
         }
     }

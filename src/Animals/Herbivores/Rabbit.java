@@ -60,19 +60,22 @@ public class Rabbit extends Herbivore {
             if (Rabbits > 2 && Rabbits < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 975) {
+                if (random > 700) {
 //                System.out.println("mouse born: " + mouses);
                     newCommonRabbit();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }
             if (Rabbits > 100 ) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 900) {
+                if (random > 800) {
 //                System.out.println("2 mouses born: " + mouses);
                     newCommonRabbit();
+                    Island.incBornHerbAnimals();
                     newCommonRabbit();
+                    Island.incBornHerbAnimals();
 //                    System.out.println(this.cell.Herbivore.get(this.cell.Herbivore.size() - 1));
                 }
             }

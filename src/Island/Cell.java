@@ -97,51 +97,69 @@ public class Cell {
 
         if(this.plants > (MAX_plants*0.8)){
         int random = ThreadLocalRandom.current().nextInt(1, 10001);
-            if (  random > 9000 && random < 9500  ) {
+            if (  random > 9850 && random < 9900  ) {
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousMouse(this);}
-            if (  random > 9500 && random < 9700  ) {
+            if (  random > 9900 && random < 9925  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousRabbit(this);}
-            if (  random > 9700 && random < 9750  ) {
+            if (  random > 9925 && random < 9950  ) {
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousRabbit(this);
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousRabbit(this);}
 
-            if (  random > 9750 && random < 9800  ) {
+            if (  random > 9950 && random < 9960  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousSheep(this);}
-            if (  random > 9800 && random < 9850  ) {
+            if (  random > 9960 && random < 9970  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousGoat(this);}
-            if (  random > 9850 && random < 9900  ) {
+            if (  random > 9970 && random < 9980  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousDeer(this);}
-            if (  random > 9900 && random < 9950  ) {
+            if (  random > 9980 && random < 9990  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousHorse(this);}
-            if (  random > 9950 && random < 10000  ) {
+            if (  random > 9990 && random < 10000  ) {
+                Island.incMigratedHerb();
             AnimalMethods.newMysteriousBuffalo(this);}
         }
 
         if(this.insectsCount > (MAX_insectsCount*0.8)) {
             int random = ThreadLocalRandom.current().nextInt(1, 10001);
-            if (random > 8000 && random < 9450) {
+            if (random > 9800 && random < 9840) {
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousMouse(this);
             }
-            if (random > 9450 && random < 9700) {
+            if (random > 9840 && random < 9870) {
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousMouse(this);
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousMouse(this);
             }
-            if (random > 9700 && random < 9900) {
+            if (random > 9870 && random < 9900) {
+                Island.incMigratedHerb();
                 AnimalMethods.newMysteriousDuck(this);
             }
         }
 
          if(this.insectsCount < (MAX_insectsCount*0.5) || this.plants < (MAX_plants*0.5) ) {
              int random = ThreadLocalRandom.current().nextInt(1, 10001);
-             if (random > 9400 && random < 9550){
+             if (random > 9830 && random < 9850){
+                 Island.incMigratedPred();
              AnimalMethods.newMysteriousSnake(this);}
-             if (random > 9550 && random < 9700){
+             if (random > 9850 && random < 9870){
+                 Island.incMigratedPred();
              AnimalMethods.newMysteriousEagle(this);}
-             if (random > 9700 && random < 9775){
+             if (random > 9870 && random < 9880){
+                 Island.incMigratedPred();
              AnimalMethods.newMysteriousFox(this);}
-             if (random > 9775 && random < 9850){
+             if (random > 9880 && random < 9890){
+                 Island.incMigratedPred();
              AnimalMethods.newMysteriousWolf(this);}
-             if (random > 9850 && random < 9900){
+             if (random > 9890 && random < 9900){
+                 Island.incMigratedPred();
              AnimalMethods.newMysteriousBear(this);}
 
          }

@@ -57,14 +57,6 @@ public class GameMethods {
                         service.execute(new PredatorsCycle(value));
 
                     });
-            Island.getIsland().forEach(
-                    (key, value)
-                            -> {
-                        service.execute(new Logging(value));
-
-                    });
-
-
 
 
             do {
@@ -74,24 +66,36 @@ public class GameMethods {
                     e.printStackTrace();
                 }
 //                System.out.println("still logging");
-            } while (GameOptions.isIsCycleReady());         //TODO awefull join method???
+            } while (GameOptions.isIsCycleReady());
 
             weekCounter++;
 
             if (weekCounter > 7) {
                 totalWeeks++;
-                GameMethods.oneWeekLog((int)totalWeeks);
+                Logging2 log2 = new Logging2((int)totalWeeks);
+                log2.start();
+                try {
+                    log2.join(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 weekCounter = 0;
 
                 if (totalWeeks % 4 == 0) {
-                    GameMethods.oneMonthLog();
+                    Logging log = new Logging();
+                    log.start();
+                    try {
+                        log.join(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-        service.shutdown();   //TODO Разбораться как не вырубать и не создавать заново Пул
+        service.shutdown();
 
         try {
-            service.awaitTermination(3, TimeUnit.SECONDS);
+            service.awaitTermination(30, TimeUnit.SECONDS);  //TODO?
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -103,29 +107,8 @@ public class GameMethods {
     }
 
 
-    public static void oneWeekLog(int totalWeeks){
-        System.out.println("___________________________________");
-        System.out.println("one week has passed");
-//        System.out.println(Island.getIsland());
-        System.out.println("New Week Started");
-        System.out.println(totalWeeks + " weeks passed");
-    }
-    public static void oneMonthLog(){
-        System.out.println("One Month Report:");
-        Cell.totalMouseCount();
-        Cell.totalSnakesCount();
-        Cell.totalSheepCount();
-        Cell.totalDuckCount();
-        Cell.totalEagleCount();
-        Cell.totalRabbitCount();
-        Cell.totalGoatCount();
-        Cell.totalDeerCount();
-        Cell.totalHorseCount();
-        Cell.totalBuffaloCount();
-        Cell.totalFoxCount();
-        Cell.totalWolfCount();
-        Cell.totalBearCount();
-    }
+
+
 
 }
 

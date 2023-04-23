@@ -4,8 +4,40 @@ import Options.GameOptions;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узнать нужны ли методв синк если уже пакет канкарент
+public class Island extends ConcurrentHashMap<String,Cell> {
     private  static Island island;
+    private volatile static int deadAnimals;
+    private volatile static int bornAnimals;
+    private volatile static int deadHerbAnimals;
+    private volatile static int bornHerbAnimals;
+    private volatile static int HerbEaten;
+    private volatile static int migratedHerb;
+    private volatile static int migratedPred;
+
+    public synchronized static int getHerbEaten() {
+        return Island.HerbEaten;
+    }
+
+    public synchronized static void incHerbEaten() {
+        Island.HerbEaten++;
+    }
+    public synchronized static int getMigratedHerb() {
+        return Island.migratedHerb;
+    }
+
+    public synchronized static void incMigratedHerb() {
+        Island.migratedHerb++;
+    }
+
+    public synchronized static int getMigratedPred() {
+        return Island.migratedPred;
+    }
+
+    public synchronized static void incMigratedPred() {
+        Island.migratedPred++;
+    }
+
+
 
     private Island(){};
 
@@ -27,10 +59,40 @@ public class Island extends ConcurrentHashMap<String,Cell> {       //TODO узн
         return island.get(x + "*" + y);
     }
 
-    public static synchronized Island getIsland() {
+    public static Island getIsland() {
         return island;
     }
 
+    public static int getDeadAnimals() {
+        return Island.deadAnimals;
+    }
+
+    public synchronized static void incDeadAnimals() {
+        Island.deadAnimals++;
+    }
+    public static int getDeadHerbAnimals() {
+        return Island.deadHerbAnimals;
+    }
+
+    public synchronized static void incDeadHerbAnimals() {
+        Island.deadHerbAnimals++;
+    }
+
+    public static int getBornAnimals() {
+        return Island.bornAnimals;
+    }
+
+    public synchronized static void incBornAnimals() {
+        Island.bornAnimals++;
+    }
+
+    public static int getBornHerbAnimals() {
+        return Island.bornHerbAnimals;
+    }
+
+    public synchronized static void incBornHerbAnimals() {
+        Island.bornHerbAnimals++;
+    }
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

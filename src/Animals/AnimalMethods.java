@@ -4,6 +4,7 @@ import Animals.Herbivores.*;
 import Animals.Omnivores.OmnivoresTypes;
 import Animals.Predators.*;
 import Island.Cell;
+import Island.Island;
 import Options.GameMethods;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -11,6 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class AnimalMethods {
     public synchronized static String checkTarget(Predator p, Herbivore h, int a){
         int indexOfHerb = p.getCell().getHerbivores().size()-a;
+        if (indexOfHerb > 0){
         if((p.getCell().getHerbivores().size() - indexOfHerb) >= 1 ) {
 
 //            System.out.println((p.getCell().getHerbivores().size() - indexOfHerb) + "  <1 ???? ERROR ???");
@@ -31,6 +33,7 @@ public class AnimalMethods {
             } else if (p.getCell().getHerbivores().get(indexOfHerb).getClass().getName().contains("Horse")) {
                 return "Horse";
             }
+        }
         }
         return " ";
     }
@@ -54,7 +57,7 @@ public class AnimalMethods {
     public synchronized static void consumeHerbivore(Predator p, Herbivore h, int a){
         int indexOfHerb = p.getCell().getHerbivores().size()-a;
 //        System.out.println((p.getCell().getHerbivores().size() - indexOfHerb) + " < 1??? if yes, break and return ");
-        if((p.getCell().getHerbivores().size() - indexOfHerb ) >= 1 ) {
+        if((p.getCell().getHerbivores().size() - indexOfHerb ) >= 1 && indexOfHerb >0 ) {
 
 //                          System.out.println("predator got herbivore = " );
 //            System.out.println(p.getCell().getHerbivores().get(indexOfHerb) + " " + a + " weight: " + p.getCell().getHerbivores().get(indexOfHerb).getWeight());
@@ -63,6 +66,7 @@ public class AnimalMethods {
             //            p.raiseWeight(p.getCell().getHerbivores().get(indexOfHerb).getWeight()); // 0.01
 //            System.out.println(p.getCell().getHerbivores().get(indexOfHerb) + " " + a + "remove");
             p.getCell().getHerbivores().remove(indexOfHerb);
+            Island.incHerbEaten();
 //                          System.out.println("predator" + p.getClass().getName() + " eat herbivore");
             if (p.getWeight() > p.getMAX_weight()) {
                 p.setWeight(p.getMAX_weight());
