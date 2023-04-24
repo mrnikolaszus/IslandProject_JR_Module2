@@ -44,7 +44,7 @@ public class Fox extends Predator {
             if (Foxs >= 2 && Foxs < 100) {
 //                System.out.println("на этой ячейки всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 200) {
+                if (random > 400) {
                     newCommonFox();
                     Island.incBornAnimals();
 
@@ -53,7 +53,7 @@ public class Fox extends Predator {
             if (Foxs > 10) {
 //                System.out.println("на этой ячейке всего животных такого типа: " + thisAnimalCount);
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
-                if (random > 500) {
+                if (random > 800) {
                     newCommonFox();
                     Island.incBornAnimals();
                     newCommonFox();
@@ -84,16 +84,17 @@ public class Fox extends Predator {
                 attemp++;
                 continue;}
 //                        System.out.println("Fox found mouse on cell = " + attemp);
-            if((this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
+            if(this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
                 checkSize=1;
                 this.move();
                 attemp++;
                 continue;}
-            if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
+            if ( this.getCell().getHerbivores().size() - (checkSize) > 0 && this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
             if ( AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println(" Fox method logic");
-                daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
-                if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
+                if (this.getCell().getHerbivores().size() - (checkSize) > 0) {
+                    daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
+                }if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
                 AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
                 if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
                     break;

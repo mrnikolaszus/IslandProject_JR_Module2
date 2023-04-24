@@ -48,7 +48,7 @@ public class Eagle extends Predator {
 //                System.out.println(" 2 or more Eagles tries to reproduce");
                 int random = ThreadLocalRandom.current().nextInt(1, 1000);
 
-                if (random > 200) {
+                if (random > 400) {
                     newCommonEagle();
 //                    System.out.println(" new Eagle born");
                     Island.incBornAnimals();
@@ -58,7 +58,7 @@ public class Eagle extends Predator {
             if (Eagles > 10) {
 //                System.out.println("на этой ячейке всего животных такого типа: " + thisAnimalCount);
 
-                if (random > 500) {
+                if (random > 800) {
                     newCommonEagle();
                     Island.incBornAnimals();
                     newCommonEagle();
@@ -89,16 +89,17 @@ public class Eagle extends Predator {
                 attemp++;
                 continue;}
 //                        System.out.println("Eagle found mouse on cell = " + attemp);
-            if((this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
+            if(this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) < 1 ){
                 checkSize=1;
                 this.move();
                 attemp++;
                 continue;}
-            if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
+            if ( this.getCell().getHerbivores().size() - (checkSize) > 0 && this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
             if ( AnimalMethods.tryToCatch(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize)) {
 //                            System.out.println(" Eagle method logic");
-                daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
-                if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
+                if (this.getCell().getHerbivores().size() - (checkSize) > 0) {
+                    daylyPrey += this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize).getWeight();
+                }if (this.getCell().getHerbivores().size() - (this.getCell().getHerbivores().size() - (checkSize)) > 1 &&  this.getCell().getHerbivores().size() != (this.getCell().getHerbivores().size() - (checkSize))) {
                 AnimalMethods.consumeHerbivore(this, this.getCell().getHerbivores().get(this.getCell().getHerbivores().size() - checkSize), checkSize);
                 if (daylyPrey > MAX_RAISE_WEIGHT) { //MAX_RAISE_WEIGHT
                     break;
