@@ -29,19 +29,19 @@ public abstract class Animal {
     public abstract void death();
     public abstract void lifeCycle();
     public abstract void move();
-    public void stepUP(){
+    public synchronized void stepUP(){
         if(posY != GameOptions.getSizeY()){
             this.posY += 1;}
     }
-    public void stepDown(){
+    public synchronized  void stepDown(){
         if(posY != 1){
             this.posY -= 1;}
     }
-    public void stepLeft(){
+    public synchronized  void stepLeft(){
         if(posX != 1){
             this.posX -= 1;}
     }
-    public void stepRight(){
+    public synchronized  void stepRight(){
         if(posX != GameOptions.getSizeX()){
             this.posX += 1;}
     }

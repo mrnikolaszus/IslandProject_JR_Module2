@@ -1,16 +1,8 @@
-import Animals.AnimalMethods;
-import Animals.Herbivores.Mouse;
-import Animals.Herbivores.Sheep;
-import Animals.Predators.PredatorsTypes;
-import Animals.Predators.Snake;
-import Island.Island;
-import Options.GameMethods;
-import Options.GameOptions;
-import Threads.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.*;
+import Animals.Predators.PredatorsTypes;
+
+import Options.GameMethods;
+
 
 public class Main {
     public static void main(String[] args) {
